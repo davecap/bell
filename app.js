@@ -28,10 +28,10 @@ app.configure(function(){
   app.use(app.router);
 });
 
-io.configure(function () {
-    io.set("transports", ["xhr-polling"]);
-    io.set("polling duration", 10);
-});
+// io.configure(function () {
+//     io.set("transports", ["xhr-polling"]);
+//     io.set("polling duration", 10);
+// });
 
 io.sockets.on('connection', function (socket) {
     sockets.push(socket);
