@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+
+    </head>
+    <body>
+        Bell!
+        <audio id="bell">
+            <source src="/sounds/horn.mp3" type="audio/mp3" preload="auto"/>
+        </audio>
+
+        <script>
+          var socket = io.connect('/');
+          socket.on('ring', function (data) {
+            console.log('ring!');
+            var sound = $("#bell")[0];
+            sound.load();
+            sound.play();
+          });
+        </script>
+    </body>
+</html>
