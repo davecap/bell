@@ -3,6 +3,10 @@ var express = require("express"),
     io = require('socket.io').listen(app),
     _ = require('underscore')._;
 
+if (process.env.NODE_ENV === "production") {
+    io.set('log level', 1);
+}
+
 var sockets = [];
 
 app.get('/', function (req, res) {
@@ -15,6 +19,7 @@ app.post('/ring/:type', function (req, res) {
             socket.emit('ring', { type: req.params.type });
         });
     }
+    res.send(req.body);
 });
 
 app.configure(function(){
