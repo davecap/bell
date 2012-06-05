@@ -5,19 +5,32 @@
 
     </head>
     <body>
-        Bell!
+        <div style="text-align:center;width:100%;height:100%;">
+            <h1>Da Bell</h1>
+            <a href="#" id="test-bell">
+            <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Alexander_Graham_Bell.jpg/220px-Alexander_Graham_Bell.jpg"/><br />
+            (click to test)</a>
+        </div>
         <audio id="bell">
             <source src="/sounds/horn.mp3" type="audio/mp3" preload="auto"/>
         </audio>
 
         <script>
-          var socket = io.connect('/');
-          socket.on('ring', function (data) {
-            console.log(data);
-            var sound = $("#bell")[0];
-            sound.load();
-            sound.play();
-          });
+            var ring = function() {
+                var sound = $("#bell")[0];
+                sound.load();
+                sound.play();
+            }
+
+            var socket = io.connect('/');
+            socket.on('ring', function (data) {
+                console.log(data);
+                ring();
+            });
+
+            $('#test-bell').on('click', function() {
+                ring();
+            });
         </script>
     </body>
 </html>
