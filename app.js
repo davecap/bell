@@ -1,5 +1,5 @@
 var express = require("express"),
-    app     = express.createServer(),
+    app     = express.createServer(express.logger()),
     io = require('socket.io').listen(app),
     _ = require('underscore')._;
 
@@ -37,4 +37,8 @@ io.sockets.on('connection', function (socket) {
     sockets.push(socket);
 });
 
-app.listen(8080);
+
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
+});
