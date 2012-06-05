@@ -33,6 +33,7 @@ app.configure(function(){
   app.use(app.router);
 });
 
+// for Heroku, no websockets, only long polling
 // io.configure(function () {
 //     io.set("transports", ["xhr-polling"]);
 //     io.set("polling duration", 10);
