@@ -21,12 +21,11 @@ It listens on *0.0.0.0:5000* so to listen to the bell ring just go there.
 
 To ring the bell:
 
-    curl -d "" http://localhost:5000/ring/bell
+    curl -d "" http://localhost:5000/
 
 Or in Python, use requests!
 
     import requests
-    requests.post("http://localhost:5000/ring/bell")
-
+    requests.post("http://localhost:5000/")
 
 Enjoy!

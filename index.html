@@ -2,7 +2,6 @@
     <head>
         <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.2.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
-
     </head>
     <body>
         <div style="text-align:center;width:100%;height:100%;">
@@ -11,21 +10,25 @@
             <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Alexander_Graham_Bell.jpg/220px-Alexander_Graham_Bell.jpg"/><br />
             (click to test)</a>
         </div>
-        <audio id="bell">
+        <audio id="sound-default">
             <source src="/sounds/horn.mp3" type="audio/mp3" preload="auto"/>
         </audio>
 
         <script>
-            var ring = function() {
-                var sound = $("#bell")[0];
-                sound.load();
-                sound.play();
+            var ring = function(type) {
+                if (type === undefined) {
+                    type = 'default';
+                }
+                var sound = $("#sound-"+type)[0];
+                if (sound != undefined) {
+                    sound.load();
+                    sound.play();
+                }
             }
 
             var socket = io.connect('/');
             socket.on('ring', function (data) {
-                console.log(data);
-                ring();
+                ring(data.type);
             });
 
             $('#test-bell').on('click', function() {
