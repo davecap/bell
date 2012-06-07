@@ -13,7 +13,10 @@
         <audio id="sound-default">
             <source src="/sounds/horn.mp3" type="audio/mp3" preload="auto"/>
         </audio>
-
+        <audio id="sound-highfive">
+            <source src="/sounds/high5.wav" type="audio/wav" preload="auto"/>
+        </audio>
+        
         <script>
             var ring = function(type) {
                 if (type === undefined) {
@@ -23,6 +26,8 @@
                 if (sound != undefined) {
                     sound.load();
                     sound.play();
+                } else {
+                    console.log('No sound found with type: '+type);
                 }
             }
 
